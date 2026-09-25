@@ -67,6 +67,12 @@ dependencies {
         "include"(this)
         isTransitive = false
     }
+    implementation(libs.media.interface.core) {
+        "include"(this)
+    }
+    implementation(libs.media.interface.windows) {
+        "include"(this)
+    }
     implementation(libs.ktor.cio) {
         exclude("org.jetbrains.kotlinx")
         exclude("org.jetbrains.kotlin")
