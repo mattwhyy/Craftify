@@ -109,7 +109,6 @@ tasks.withType<KotlinCompile>().configureEach {
 
 
 val prismModsDir = file("C:/Users/mattwhyy/AppData/Roaming/PrismLauncher/instances/26.1.2/minecraft/mods")
-val remappedCraftifyJar = tasks.named<RemapJarTask>("remapJar")
 
 tasks.named("build") {
     doLast {
@@ -117,7 +116,14 @@ tasks.named("build") {
             throw GradleException("Prism mods directory does not exist: ${prismModsDir.absolutePath}")
         }
 
-        val builtJar = layout.buildDirectory.file("libs/${project.name}-${project.version}.jar").get().asFile\n        if (!builtJar.isFile) {\n            throw GradleException("Built Craftify jar not found: ${builtJar.absolutePath}")\n        }
+        val builtJar = layout.buildDirectory
+            .file("libs/${project.name}-${project.version}.jar")
+            .get()
+            .asFile
+
+        if (!builtJar.isFile) {
+            throw GradleException("Built Craftify jar not found: ${builtJar.absolutePath}")
+        }
 
         prismModsDir.listFiles()
             ?.filter {
