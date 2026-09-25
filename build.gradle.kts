@@ -1,4 +1,3 @@
-import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 import net.fabricmc.loom.task.RemapJarTask
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 import org.jetbrains.kotlin.gradle.dsl.KotlinVersion
@@ -8,7 +7,6 @@ plugins {
     idea
     kotlin("jvm") version "2.3.0"
     alias(libs.plugins.loom)
-    alias(libs.plugins.shadow)
 }
 
 loom {
@@ -21,10 +19,6 @@ loom {
             vmArgs("-Ddevauth.enabled=true")
         }
     }
-}
-
-val shadowImplementation by configurations.creating {
-    configurations["implementation"].extendsFrom(this)
 }
 
 repositories {
@@ -45,17 +39,21 @@ dependencies {
 
     "runtimeOnly"(libs.devauth)
 
-    "shadowImplementation"(libs.vigilance) {
+    "implementation"(libs.vigilance) {
+        "include"(this)
         isTransitive = false
     }
-    "shadowImplementation"(libs.elementa) {
+    "implementation"(libs.elementa) {
+        "include"(this)
         isTransitive = false
     }
-    "shadowImplementation"(libs.universalcraft) {
+    "implementation"(libs.universalcraft) {
+        "include"(this)
         exclude("org.jetbrains.kotlinx")
         exclude("org.jetbrains.kotlin")
         exclude("net.fabricmc")
     }
+
     "implementation"(libs.resourceful.lib) {
         "include"(this)
     }
@@ -87,19 +85,14 @@ dependencies {
     }
 }
 
-tasks.withType<ShadowJar> {
-    archiveClassifier.set("shadow-dev")
-    configurations = listOf(shadowImplementation)
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
-
-    relocate("gg.essential", "tech.thatgravyboat.craftify.libs.essential")
-    exclude("pack.mcmeta")
-    exclude("META-INF/maven/**")
+tasks.processResources {
+    inputs.property("version", project.version)
+    filesMatching("fabric.mod.json") {
+        expand("version" to project.version)
+    }
 }
 
 tasks.withType<RemapJarTask> {
-    dependsOn(tasks.shadowJar)
-    inputFile.set(tasks.shadowJar.flatMap { it.archiveFile })
     archiveClassifier.set("")
 }
 
