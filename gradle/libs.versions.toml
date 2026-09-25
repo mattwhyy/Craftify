@@ -1,6 +1,7 @@
 [versions]
 
 ktor = "2.1.0"
+media-interface = "3.0.0"
 
 fabric-loader = "0.17.3"
 fabric-api = "0.154.2+26.2"
@@ -36,6 +37,8 @@ ktor-websocket-serialization = { module = "io.ktor:ktor-websocket-serialization-
 ktor-websockets = { module = "io.ktor:ktor-websockets-jvm", version.ref = "ktor" }
 
 jukebox = { module = "tech.thatgravyboat:jukebox-jvm", version = "1.0.2" }
+media-interface-core = { module = "org.endlesssource.mediainterface:core", version.ref = "media-interface" }
+media-interface-windows = { module = "org.endlesssource.mediainterface:windows", version.ref = "media-interface" }
 
 universalcraft = { module = "gg.essential:universalcraft-26.2-fabric", version.ref = "universalcraft" }
 elementa = { module = "gg.essential:elementa", version.ref = "elementa" }
