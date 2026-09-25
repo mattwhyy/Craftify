@@ -47,6 +47,14 @@ object ServiceTypes {
             YoutubeServiceV2(YoutubeServiceConfig.token)
         },
 
+        create<SoundCloudWindowsService>(
+            "soundcloud",
+            "SoundCloud (Windows)",
+            emptyList(),
+            System.getProperty("os.name").startsWith("Windows", ignoreCase = true),
+            ::SoundCloudWindowsService,
+        ),
+
         create<CiderV1Service>("cider", "Cider (Apple Music)", ServiceConfigs.CIDER, true, ::CiderV1Service),
         create<CiderV2Service>("cider2", "Cider 2 (Apple Music)", ServiceConfigs.CIDER2, true, ::CiderV2Service),
         create<AppleMusicService>("applescript", "Apple Music (MacOS)", ServiceConfigs.APPLESCRIPT, UDesktop.isMac) {
