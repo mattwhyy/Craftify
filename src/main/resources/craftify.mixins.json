@@ -4,8 +4,8 @@
     "compatibilityLevel": "JAVA_21",
     "package": "tech.thatgravyboat.craftify.mixins",
     "client": [
-      "HudMixin",
-      "MinecraftMixin",
-      "MouseHandlerMixin"
+      "GuiMixin",
+        "MinecraftMixin",
+        "MouseHandlerMixin"
     ]
 }
