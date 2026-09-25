@@ -14,19 +14,19 @@ object McClient {
     val self: Minecraft get() = Minecraft.getInstance()
     val font: Font get() = self.font
     var screen: Screen?
-        get() = self.gui.screen()
+        get() = self.screen
         set(value) {
-            if (self.gui.screen() != null) {
-                run { self.gui.setScreen(value) }
+            if (self.screen != null) {
+                run { self.setScreen(value) }
             } else {
-                self.gui.setScreen(value)
+                self.setScreen(value)
             }
         }
     val player: LocalPlayer? get() = self.player
     val options: Options get() = self.options
     val window: Window get() = self.window
 
-    val hideGui: Boolean get() = self.gui.hud.isHidden
+    val hideGui: Boolean get() = self.options.hideGui
     val showDebugGui: Boolean get() = self.debugEntries.isOverlayVisible
     val isTabOpened: Boolean get() {
         if (!options.keyPlayerList.isDown) return false
