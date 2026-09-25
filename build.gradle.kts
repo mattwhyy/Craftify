@@ -47,7 +47,7 @@ dependencies {
         "include"(this)
         isTransitive = false
     }
-    "modImplementation"(libs.universalcraft) {
+    "implementation"(libs.universalcraft) {
         "include"(this)
         exclude("org.jetbrains.kotlinx")
         exclude("org.jetbrains.kotlin")
