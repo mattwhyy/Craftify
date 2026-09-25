@@ -88,7 +88,7 @@ dependencies {
 }
 
 tasks.withType<ShadowJar> {
-    archiveClassifier.set("dev")
+    archiveClassifier.set("shadow-dev")
     configurations = listOf(shadowImplementation)
     duplicatesStrategy = DuplicatesStrategy.EXCLUDE
 
@@ -98,6 +98,7 @@ tasks.withType<ShadowJar> {
 }
 
 tasks.withType<RemapJarTask> {
+    dependsOn(tasks.shadowJar)
     inputFile.set(tasks.shadowJar.flatMap { it.archiveFile })
     archiveClassifier.set("")
 }
