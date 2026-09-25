@@ -117,7 +117,7 @@ tasks.named("build") {
             throw GradleException("Prism mods directory does not exist: ${prismModsDir.absolutePath}")
         }
 
-        val builtJar = remappedCraftifyJar.get().archiveFile.get().asFile
+        val builtJar = layout.buildDirectory.file("libs/${project.name}-${project.version}.jar").get().asFile\n        if (!builtJar.isFile) {\n            throw GradleException("Built Craftify jar not found: ${builtJar.absolutePath}")\n        }
 
         prismModsDir.listFiles()
             ?.filter {
