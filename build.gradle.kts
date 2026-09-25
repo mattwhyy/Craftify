@@ -67,10 +67,10 @@ dependencies {
         "include"(this)
         isTransitive = false
     }
-    implementation(libs.media.interface.core) {
+    implementation(libs.mediaInterfaceCore) {
         "include"(this)
     }
-    implementation(libs.media.interface.windows) {
+    implementation(libs.mediaInterfaceWindows) {
         "include"(this)
     }
     implementation(libs.ktor.cio) {
